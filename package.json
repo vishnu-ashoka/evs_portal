@@ -9,7 +9,11 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
-    "vue": "^3.2.13"
+    "firebase": "^10.6.0",
+    "lodash.uniqueid": "^4.0.1",
+    "npm-watch": "^0.11.0",
+    "vue": "^3.2.13",
+    "vuefire": "^3.1.18"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
