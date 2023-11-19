@@ -13,7 +13,7 @@
                 {{ dst }}
             </div>
             <div align="center">
-                {{ available_seats }}
+                Available Seats: {{ available_seats }}
             </div>
         </div>
     </div>
