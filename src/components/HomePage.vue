@@ -4,7 +4,7 @@
         <label for="stime" class="label">Enter your date/time of travel : </label>
         <input type="datetime-local" id="stime" name="stime" :min="mini" :max="maxi" class="inp"/><br>
         <label for="passengers" class="label">Enter number of passengers : </label>
-        <input type="number" id="passengers" min="1" max="3" placeholder="1-3" class="inp"><br>
+        <input type="number" id="passengers" min="1" max="3" value=1 class="inp"><br>
         <label for="sline" class="label">Enter source and destination : </label>
         <select id="sline" name="sline" class="inp">
             <option value="aTOj">Ashoka to Jahangirpuri</option>
@@ -25,10 +25,11 @@ export default {
     methods: {
         Next: function(){
             var stime_val = document.getElementById('stime').value;
+            var pass_val = document.getElementById('passengers').value;
             var t1 = new Date(stime_val);
             var t2 = new Date();
             console.log(t1, t2, t1<t2)
-            if( t1 > t2 ){
+            if( t1 > t2 & pass_val <= 3){
                 this.$router.push({
                 path: '/shuttle', 
                 query: {
@@ -38,9 +39,11 @@ export default {
                 }
             })
             }
-            else{
-                window.alert('nah bitch');
-                console.log('nah bitch');
+            else if(t1 < t2){
+                window.alert('nah bitch change time');
+            }
+            else if( pass_val > 3){
+                window.alert('nah bitch max 3 passengers');
             }
             
         }

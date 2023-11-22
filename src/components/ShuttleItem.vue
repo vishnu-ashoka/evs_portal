@@ -1,6 +1,5 @@
 <template>
-    <div :id="id" class="item" @click="select">
-        <div class="container">
+        <div :id="id" class="item" @click="select">
             <div align="left">
                 {{ hrs }}:{{ mins }}
                 {{ mer }}
@@ -15,15 +14,13 @@
                 Available Seats: {{ available_seats }}
             </div>
         </div>
-    </div>
 </template>
 <script>
     import uniqueId from 'lodash.uniqueid';
-
+    
     export default{
         methods:{
             select: function(){
-                console.log(this.$refs)
                 console.log(this.id);
                 this.s  = !this.s;
                 if(this.s){
@@ -47,6 +44,18 @@
             sorc: { required: true, type: String },
             dst: { required: true, type: String },
             available_seats: { default: 18 , type: Number },
+            needed_seats: {required: true, type: Number}
+        },
+        async created() {
+            if(this.needed_seats > this.available_seats){
+                setTimeout(() =>{ 
+                    const t = document.getElementById(this.id); 
+                    console.log(t);
+                    t.style.cssText='background-color: gray;border: 3px solid gray;color: dark gray';
+                    
+                }, 10)
+                // console.log(t, this.id);
+            }
         },
         data(){
             var state = 'normal;'
@@ -62,12 +71,16 @@
             hrs = hrs%12;
             if (mins==0){mins="00"}
             if (hrs==0){hrs="12"}
+
+            var id = uniqueId('shuttle-');
+           
+
             return{
                 state:state,
                 hrs:hrs,
                 mins:mins,
                 mer:mer,
-                id:uniqueId('shuttle-'),
+                id: id,
                 s:false
             }
         }
@@ -93,4 +106,14 @@
     color: #f3f3f3 !important;
     margin: 5.5px !important;
 }
+.overlay{
+    visibility: hidden;
+    width:200px;
+    background-color: #a3a3a3;
+    border: 3px solid #bdbdbd;
+    border-radius: 25px;
+    padding: 20px;
+    margin: 5.5px;
+}
+
 </style>
