@@ -1,19 +1,19 @@
 <template>
-        <div :id="id" class="item" @click="select">
-            <div align="left">
-                {{ hrs }}:{{ mins }}
-                {{ mer }}
-            </div>
-            <div align="left">
-                {{ sorc }}
-            </div>
-            <div align="right">
-                {{ dst }}
-            </div>
-            <div align="center">
-                Available Seats: {{ available_seats }}
-            </div>
+    <div :id="id" class="item" @click="select">
+        <div id="tim" align="center">
+            {{ hrs }}:{{ mins }}
+            {{ mer }}
         </div>
+        <div align="left">
+            {{ sorc }}  &rarr;
+        </div>
+        <div align="right">
+            &rarr; {{ dst }}
+        </div>
+        <div align="center">
+            Available Seats: {{ available_seats }}
+        </div>
+    </div>
 </template>
 <script>
     import uniqueId from 'lodash.uniqueid';
@@ -35,8 +35,8 @@
             },
             deselect: function(){
                 this.s = false;
-                document.getElementById(this.id).style.background='white';
-                document.getElementById(this.id).style.color='#000000';
+                document.getElementById(this.id).style.background='#272626';
+                document.getElementById(this.id).style.color='#f3f3f3';
             }
         },
         props:{
@@ -51,8 +51,9 @@
                 setTimeout(() =>{ 
                     const t = document.getElementById(this.id); 
                     console.log(t);
-                    t.style.cssText='background-color: gray;border: 3px solid gray;color: dark gray';
-                    
+                    t.style.cssText='background-color: #5c5c5c ;border: 3px solid #D22B2B;height:78px';
+                    t.innerHTML=this.hrs + ':' + this.mins + ' ' + this.mer + '<br> <a style="font-size: large"> Not enough seats</a> <br> <br> <br> Available Seats: '+this.available_seats;
+                    console.log(document.getElementById('tim'));
                 }, 10)
                 // console.log(t, this.id);
             }
@@ -103,17 +104,6 @@
     background-color: #D22B2B !important;
     border-radius: 25px !important;
     padding: 20px !important;
-    color: #f3f3f3 !important;
     margin: 5.5px !important;
 }
-.overlay{
-    visibility: hidden;
-    width:200px;
-    background-color: #a3a3a3;
-    border: 3px solid #bdbdbd;
-    border-radius: 25px;
-    padding: 20px;
-    margin: 5.5px;
-}
-
 </style>

@@ -1,6 +1,5 @@
 <template>
-  <div id="app" class="main" style="">
-    <img src="./assets/logo.png" style="width:200px;height:150px;;">
+  <div id="app" class="main" style="">    
     <router-view></router-view>
   </div>
 </template>
@@ -17,7 +16,8 @@
 }
 .main{
   background-color: #1a1919;
-  height: 90vh;
+  width:98%;
+  height: 88vh;
   position:absolute;
   top:0;
   left:0;

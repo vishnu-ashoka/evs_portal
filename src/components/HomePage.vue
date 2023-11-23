@@ -1,6 +1,10 @@
 <template>
-    <div style="height: 100px; background-color: #1a1919;"></div>
-    <div class="form" style="background-color: #1a1919;">
+    <header style="padding: 8px;">
+        <div><img src="../assets/logo.png" style="width:200px;height:150px;"></div>
+        <div align="center"><h1 style="font-family: monospace; color: #f3f3f3;">Ashoka Shuttle Booking</h1></div>
+        <div style="width: 200px;"></div>
+    </header>
+    <div class="form" style="background-color: #1a1919;padding-top: 230px;">
         <label for="stime" class="label">Enter your date/time of travel : </label>
         <input type="datetime-local" id="stime" name="stime" :min="mini" :max="maxi" class="inp"/><br>
         <label for="passengers" class="label">Enter number of passengers : </label>
@@ -18,7 +22,6 @@
     </div>
 </template>
 <script>
-//import { router } from '../router.js';
 
 export default {
     name: 'HomePage',
@@ -40,10 +43,10 @@ export default {
             })
             }
             else if(t1 < t2){
-                window.alert('nah bitch change time');
+                window.alert('nah dawg change time');
             }
             else if( pass_val > 3){
-                window.alert('nah bitch max 3 passengers');
+                window.alert('nah dawg max 3 passengers');
             }
             
         }
@@ -69,6 +72,13 @@ export default {
     font-family: Consolas;
 
 }
+header{
+    display: flex;
+    width: 100%;
+    float:left;
+    align-items: center;
+    justify-content:space-between;
+}
 .next-button{
     position: absolute;
     bottom: 0;
@@ -86,13 +96,14 @@ export default {
     width: 100px;
     height: 50px;
     border-radius: 15px;
-    border: #1a1919;
+    border: #D22B2B;
     background: #0E3970;
     color: #f3f3f3;
     margin: 5.5px;
 }
 .inp{
-    color: #1a1919;
+    background-color: #3f3f3f;
+    color: #000000;
     font-family: monospace;
     font-size: large;
 }
