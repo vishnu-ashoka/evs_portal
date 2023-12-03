@@ -1,8 +1,8 @@
 <template>
     <header style="padding: 8px;">
-        <div><img src="../assets/logo.png" style="width:200px;height:150px;"></div>
+        <div style="max-width: 200px;"><img src="../assets/logo.png" style="width:100%"></div>
         <div align="center"><h1 style="font-family: monospace; color: #f3f3f3;">Ashoka Shuttle Booking</h1></div>
-        <div style="width: 200px;"></div>
+        <div style="width: 257px;"></div>
     </header>
     <div class="form" style="background-color: #1a1919;padding-top: 230px;">
         <label for="stime" class="label">Enter your date/time of travel : </label>
@@ -84,6 +84,7 @@ header{
     bottom: 0;
     right: 0;
     margin: 5.5px;
+
   }
 .button{
     width: 100px;

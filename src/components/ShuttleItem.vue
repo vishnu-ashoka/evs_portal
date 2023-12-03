@@ -44,7 +44,8 @@
             sorc: { required: true, type: String },
             dst: { required: true, type: String },
             available_seats: { default: 18 , type: Number },
-            needed_seats: {required: true, type: Number}
+            needed_seats: {required: true, type: Number},
+            interested: {required:true, type: Number}
         },
         async created() {
             if(this.needed_seats > this.available_seats){
@@ -52,7 +53,7 @@
                     const t = document.getElementById(this.id); 
                     console.log(t);
                     t.style.cssText='background-color: #5c5c5c ;border: 3px solid #D22B2B;height:78px';
-                    t.innerHTML=this.hrs + ':' + this.mins + ' ' + this.mer + '<br> <a style="font-size: large"> Not enough seats</a> <br> <br> <br> Available Seats: '+this.available_seats;
+                    t.innerHTML=this.hrs + ':' + this.mins + ' ' + this.mer + '<br> <a style="font-size: large"> Not enough seats</a> <br> Available Seats: '+ this.available_seats + '<br> Interested: '+ this.interested ;
                     console.log(document.getElementById('tim'));
                 }, 10)
                 // console.log(t, this.id);

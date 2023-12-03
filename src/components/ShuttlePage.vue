@@ -1,23 +1,28 @@
 <template>
       <header style="padding: 8px;">
-        <div><img src="../assets/logo.png" style="width:200px;height:150px;"></div>
+        <div style="max-width: 200px;"><img src="../assets/logo.png" style="width: 100%;"></div>
         <div align="center"><h1 style="font-family: monospace; color: #f3f3f3;">Ashoka Shuttle Booking</h1></div>
-        <div style="width: 200px;color: #9b9b9b;" align="left">
+        <div style="width: 200px;color: #9b9b9b;padding-left: 20px;padding-right: 20px;" align="left">
             Passengers: {{ inp_pass }} <br> Date: {{ inp_time[0] }} <br> Time: {{ inp_time[1] }}<br>
         </div>
       </header>
-      <div class="sitem" v-for="item in ShuttleItems" :key="item.time">
-        <shuttle-item :time=item.time :sorc="item.sorc" :dst="item.dst" :available_seats="item.available_seats" :needed_seats="inp_pass"></shuttle-item>
-      </div>
-      <div class="buttons">
-        <div class="back-button">
-          <button class="button" @click="Back">Back</button>
-        </div>
-        <div class="book-button">
-          <a style="font-size: small; wriap" >Select shuttle and click to Book/Register interest</a><br>
-          <button class="button" @click="BookSelection">Book</button>
+      <div>
+        <div class="sitem" v-for="item in ShuttleItems" :key="item.time">
+          <shuttle-item :time=item.time :sorc="item.sorc" :dst="item.dst" :available_seats="item.available_seats" :needed_seats="inp_pass" :interested="item.interested"></shuttle-item>
         </div>
       </div>
+      <footer>
+        <div class="buttons">
+          <div class="back-button">
+            <br><br><br>
+            <button class="button" @click="Back">Back</button>
+          </div>
+          <div class="book-button">
+            <a style="font-size: small; text-wrap: 30px;" >Select shuttle and click to Book/Register interest</a><br>
+            <button class="button" @click="BookSelection">Book</button>
+          </div>
+        </div>
+      </footer>
   </template>
   
   <script>
@@ -38,16 +43,18 @@
       var t_base =  Math.round(parseInt(inp_time.split('T')[1].replace(":", ""))/100)*100;
       var items = [];
       var map = {'a': 'Ashoka', 'j': 'Jahangirpuri', 'p':'Parker/TDI'}
-      for(var i in data['weekday'][0][line]){
+      var date = inp_time.split('T');
+      console.log(data[date[0]]);
+      for(var i in data[date[0]][0][line]){
         if(Math.abs(t_base-i)<=150){
-          items.push({time: parseInt(i), sorc: map[line[0]], dst: map[line[3]], available_seats: data['weekday'][0][line][i]});
+          items.push({time: parseInt(i), sorc: map[line[0]], dst: map[line[3]], available_seats: data[date[0]][0][line][i][0], interested: data[date[0]][0][line][i][1]});
         }
       }
 
       return {
         ShuttleItems: items,
         inp_pass: parseInt(inp_pass),
-        inp_time: inp_time.split('T')
+        inp_time: date
       };
     },
     methods:{
@@ -92,27 +99,27 @@
     background-color: #1a1919;
     width: 300px;
     float: left;
+    clear: left;
   }
   .book-button{
     width: 150px;
     color: #f3f3f3;
     text-align: right;
-    background-color: #1a1919;
     border: #0E3970;
     position: absolute;
-    bottom: 0;
     right: 0;
     margin: 5.5px;
     border-radius: 15px;
+    padding-bottom: 20px;
   }
   .back-button{
-    background-color: #1a1919;
     border: #0E3970;
     position: absolute;
-    bottom: 0;
     left: 0;
     margin: 5.5px;
     border-radius: 15px;
+    padding-bottom: 20px;
+
   }
   .button{
     background-color: #272626;
