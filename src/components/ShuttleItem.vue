@@ -21,7 +21,6 @@
     export default{
         methods:{
             select: function(){
-                console.log(this.id);
                 this.s  = !this.s;
                 if(this.s){
                     document.getElementById(this.id).style.background='#D22B2B';
@@ -51,10 +50,8 @@
             if(this.needed_seats > this.available_seats){
                 setTimeout(() =>{ 
                     const t = document.getElementById(this.id); 
-                    console.log(t);
                     t.style.cssText='background-color: #5c5c5c ;border: 3px solid #D22B2B;height:78px';
                     t.innerHTML=this.hrs + ':' + this.mins + ' ' + this.mer + '<br> <a style="font-size: large"> Not enough seats</a> <br> Available Seats: '+ this.available_seats + '<br> Interested: '+ this.interested ;
-                    console.log(document.getElementById('tim'));
                 }, 10)
                 // console.log(t, this.id);
             }
@@ -75,15 +72,13 @@
             if (hrs==0){hrs="12"}
 
             var id = uniqueId('shuttle-');
-           
-
             return{
                 state:state,
                 hrs:hrs,
                 mins:mins,
                 mer:mer,
                 id: id,
-                s:false
+                s:false,
             }
         }
     }
